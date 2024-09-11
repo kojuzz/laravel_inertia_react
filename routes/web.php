@@ -1,11 +1,8 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/react', function() {
-    return inertia('Home'); 
-});
+Route::resource('posts', PostController::class)->except('index');
+Route::get('/', [PostController::class, 'index']);
